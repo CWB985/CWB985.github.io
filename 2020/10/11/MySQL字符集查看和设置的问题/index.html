@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Markdown快速入门 | Hexo</title>
+  <title>MySQL字符集查看和设置的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Markdown快速入门（typora）  作者：浪子echo 发布类型：学习  1.代码块:1234&#x2F;&#x2F;代码块语法&#x2F;&#x2F;输入三个~~~然后接着输入语言名称&#x2F;&#x2F;例如“~~~java”代表java代码块      12&#x2F;&#x2F;&#x2F;&#x2F;  2.标题1234&#x2F;&#x2F;总共六级标题&#x2F;&#x2F;# 一级标题&#x2F;&#x2F;## 二级标题&#x2F;&#x2F;剩下的依次类推    3.字体123456789&#x2F;&#x2F;加粗 &#x2F;&#x2F;**文本内容**&#x2F;&#x2F;高亮 代码高亮显示&#x2F;&#x2F;">
+  <meta name="description" content="作者：浪子echo 发布类型：踩坑记录    最近在学习MySQL，在建完表插入数据时总是报错，经过一番查询原来是字符集设置的问题，因为插入的数据中包含中文，而MySQL的默认编码是Latin1，所以我的数据总是插不进去。为了记录我的这次惨痛教训，也为了像我一样刚开始学习数据库的小懵懂，特别写下这篇博客，防止踩坑！！！下面进入正题： 一、查看编码设置命令：查看MySQL全局的编码设置（下面两条语">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown快速入门">
-<meta property="og:url" content="http://example.com/2020/10/02/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%88typora%EF%BC%89/index.html">
+<meta property="og:title" content="MySQL字符集查看和设置的问题">
+<meta property="og:url" content="http://example.com/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Markdown快速入门（typora）  作者：浪子echo 发布类型：学习  1.代码块:1234&#x2F;&#x2F;代码块语法&#x2F;&#x2F;输入三个~~~然后接着输入语言名称&#x2F;&#x2F;例如“~~~java”代表java代码块      12&#x2F;&#x2F;&#x2F;&#x2F;  2.标题1234&#x2F;&#x2F;总共六级标题&#x2F;&#x2F;# 一级标题&#x2F;&#x2F;## 二级标题&#x2F;&#x2F;剩下的依次类推    3.字体123456789&#x2F;&#x2F;加粗 &#x2F;&#x2F;**文本内容**&#x2F;&#x2F;高亮 代码高亮显示&#x2F;&#x2F;">
+<meta property="og:description" content="作者：浪子echo 发布类型：踩坑记录    最近在学习MySQL，在建完表插入数据时总是报错，经过一番查询原来是字符集设置的问题，因为插入的数据中包含中文，而MySQL的默认编码是Latin1，所以我的数据总是插不进去。为了记录我的这次惨痛教训，也为了像我一样刚开始学习数据库的小懵懂，特别写下这篇博客，防止踩坑！！！下面进入正题： 一、查看编码设置命令：查看MySQL全局的编码设置（下面两条语">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-02T07:42:25.000Z">
-<meta property="article:modified_time" content="2020-10-10T06:49:36.421Z">
+<meta property="article:published_time" content="2020-10-11T07:04:32.000Z">
+<meta property="article:modified_time" content="2020-10-11T07:37:29.678Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="学习笔记">
-<meta property="article:tag" content="Markdown">
-<meta property="article:tag" content="test">
 <meta property="article:tag" content="原创">
+<meta property="article:tag" content="踩坑记录">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -171,71 +171,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Markdown快速入门（typora）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MySQL字符集查看和设置的问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Markdown快速入门
+      MySQL字符集查看和设置的问题
     </h1>
   
 
         
-        <a href="/2020/10/02/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%88typora%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-10-02T07:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-02</time>
+        <a href="/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-10-11T07:04:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Markdown快速入门（typora）</p>
-<blockquote>
+        <blockquote>
 <p>作者：浪子echo</p>
-<p>发布类型：学习</p>
+<p>发布类型：踩坑记录</p>
 </blockquote>
-<h2 id="1-代码块"><a href="#1-代码块" class="headerlink" title="1.代码块:"></a>1.代码块:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码块语法</span></span><br><span class="line"><span class="comment">//输入三个~~~然后接着输入语言名称</span></span><br><span class="line"><span class="comment">//例如“~~~java”代表java代码块</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>  最近在学习MySQL，在建完表插入数据时总是报错，经过一番查询原来是字符集设置的问题，因为插入的数据中包含中文，而MySQL的默认编码是Latin1，所以我的数据总是插不进去。为了记录我的这次惨痛教训，也为了像我一样刚开始学习数据库的小懵懂，特别写下这篇博客，防止踩坑！！！下面进入正题：</p>
+<h1 id="一、查看编码设置命令："><a href="#一、查看编码设置命令：" class="headerlink" title="一、查看编码设置命令："></a>一、查看编码设置命令：</h1><h2 id="查看MySQL全局的编码设置（下面两条语句任选一句）："><a href="#查看MySQL全局的编码设置（下面两条语句任选一句）：" class="headerlink" title="查看MySQL全局的编码设置（下面两条语句任选一句）："></a>查看MySQL全局的编码设置（下面两条语句任选一句）：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#39;character%&#39;; </span><br><span class="line">show variables like &#39;collation%&#39;;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看某个数据库的编码设置："><a href="#查看某个数据库的编码设置：" class="headerlink" title="查看某个数据库的编码设置："></a>查看某个数据库的编码设置：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create database 数据库名称;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//总共六级标题</span></span><br><span class="line"><span class="comment">//# 一级标题</span></span><br><span class="line"><span class="comment">//## 二级标题</span></span><br><span class="line"><span class="comment">//剩下的依次类推</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看某个表的编码设置："><a href="#查看某个表的编码设置：" class="headerlink" title="查看某个表的编码设置："></a>查看某个表的编码设置：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table 表名;</span><br></pre></td></tr></table></figure>
 
+<h1 id="二、修改-设置编码命令："><a href="#二、修改-设置编码命令：" class="headerlink" title="二、修改/设置编码命令："></a>二、修改/设置编码命令：</h1><h2 id="创建数据库时直接指定编码："><a href="#创建数据库时直接指定编码：" class="headerlink" title="创建数据库时直接指定编码："></a>创建数据库时直接指定编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名 character set utf8;</span><br></pre></td></tr></table></figure>
 
+<h2 id="修改数据库的编码："><a href="#修改数据库的编码：" class="headerlink" title="修改数据库的编码："></a>修改数据库的编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database 数据库名 character set utf8;</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加粗 </span></span><br><span class="line"><span class="comment">//**文本内容**</span></span><br><span class="line"><span class="comment">//高亮 代码高亮显示</span></span><br><span class="line"><span class="comment">//--文本内容--</span></span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line"><span class="comment">//~~文本内容~~</span></span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"><span class="comment">//*文本内容*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="创建表时指定编码："><a href="#创建表时指定编码：" class="headerlink" title="创建表时指定编码："></a>创建表时指定编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">)default charset&#x3D;utf8;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-引用："><a href="#4-引用：" class="headerlink" title="4.引用："></a>4.引用：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引用语法（一个&lt;）</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="修改表的编码："><a href="#修改表的编码：" class="headerlink" title="修改表的编码："></a>修改表的编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 character set utf8;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>作者：浪子echo<br>学习地址：哔哩哔哩</p>
-</blockquote>
-<h2 id="5-分割线："><a href="#5-分割线：" class="headerlink" title="5.分割线："></a>5.分割线：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分割线</span></span><br><span class="line">---</span><br><span class="line"><span class="comment">//分割线2</span></span><br><span class="line">***</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图片</span></span><br><span class="line">![图片名](图片地址)--图片路径</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/CWB985/MyBlog/main/echo.jpg">这是作者本人的头像</a></p>
-<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//超链接语法：</span></span><br><span class="line">[文本内容](链接地址)</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://cwb985.github.io/">欢迎关注我的博客</a></p>
-<h2 id="8-列表语法"><a href="#8-列表语法" class="headerlink" title="8.列表语法"></a>8.列表语法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序列表（一个-加空格）</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line">-目录<span class="number">3</span></span><br><span class="line"><span class="comment">//有序列表（数字加 . 加名称）</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>无序列表：</p>
-</li>
-<li><p>目录1</p>
-</li>
-<li><p>目录2</p>
-</li>
-<li><p>目录3</p>
-</li>
-</ul>
-<p>  1.名称1</p>
-<p>  2.名称2</p>
-<p>  3.名称3</p>
+<p>  以上便是关于mysql字符集的问题，我知道的也就只有这么多了，需要提醒的是在设置utf8字符集时utf后面没有”-“，这和我们在java中所遇到的不同。</p>
 
       
 
@@ -284,15 +259,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">踩坑记录</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -348,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/02/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%88typora%EF%BC%89/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -362,15 +337,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/03/MyFirstBlog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MyFirstBlog
-        
-      </div>
-    </a>
   
+    <a href="/2020/10/10/%E4%B8%8D%E8%8A%B1%E4%B8%80%E5%88%86%E9%92%B1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">不花一分钱安装使用谷歌浏览器</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -399,8 +370,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://example.com/2020/10/02/Markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%EF%BC%88typora%EF%BC%89/", 
-    sourceId: "Markdown快速入门（typora）",
+    url: "http://example.com/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/", 
+    sourceId: "MySQL字符集查看和设置的问题",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -409,7 +380,7 @@
   
 
   
-  <div id="SOHUCS" sid="Markdown快速入门（typora）" ></div> 
+  <div id="SOHUCS" sid="MySQL字符集查看和设置的问题" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

@@ -75,7 +75,7 @@
             
 		</nav>
 		<nav>
-    总文章数 4
+    总文章数 5
 </nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -165,6 +165,115 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL字符集查看和设置的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/">MySQL字符集查看和设置的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-10-11T07:04:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>作者：浪子echo</p>
+<p>发布类型：踩坑记录</p>
+</blockquote>
+<p>  最近在学习MySQL，在建完表插入数据时总是报错，经过一番查询原来是字符集设置的问题，因为插入的数据中包含中文，而MySQL的默认编码是Latin1，所以我的数据总是插不进去。为了记录我的这次惨痛教训，也为了像我一样刚开始学习数据库的小懵懂，特别写下这篇博客，防止踩坑！！！下面进入正题：</p>
+<h1 id="一、查看编码设置命令："><a href="#一、查看编码设置命令：" class="headerlink" title="一、查看编码设置命令："></a>一、查看编码设置命令：</h1><h2 id="查看MySQL全局的编码设置（下面两条语句任选一句）："><a href="#查看MySQL全局的编码设置（下面两条语句任选一句）：" class="headerlink" title="查看MySQL全局的编码设置（下面两条语句任选一句）："></a>查看MySQL全局的编码设置（下面两条语句任选一句）：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#39;character%&#39;; </span><br><span class="line">show variables like &#39;collation%&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看某个数据库的编码设置："><a href="#查看某个数据库的编码设置：" class="headerlink" title="查看某个数据库的编码设置："></a>查看某个数据库的编码设置：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create database 数据库名称;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看某个表的编码设置："><a href="#查看某个表的编码设置：" class="headerlink" title="查看某个表的编码设置："></a>查看某个表的编码设置：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table 表名;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、修改-设置编码命令："><a href="#二、修改-设置编码命令：" class="headerlink" title="二、修改/设置编码命令："></a>二、修改/设置编码命令：</h1><h2 id="创建数据库时直接指定编码："><a href="#创建数据库时直接指定编码：" class="headerlink" title="创建数据库时直接指定编码："></a>创建数据库时直接指定编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名 character set utf8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改数据库的编码："><a href="#修改数据库的编码：" class="headerlink" title="修改数据库的编码："></a>修改数据库的编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database 数据库名 character set utf8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建表时指定编码："><a href="#创建表时指定编码：" class="headerlink" title="创建表时指定编码："></a>创建表时指定编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">)default charset&#x3D;utf8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改表的编码："><a href="#修改表的编码：" class="headerlink" title="修改表的编码："></a>修改表的编码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 character set utf8;</span><br></pre></td></tr></table></figure>
+
+<p>  以上便是关于mysql字符集的问题，我知道的也就只有这么多了，需要提醒的是在设置utf8字符集时utf后面没有”-“，这和我们在java中所遇到的不同。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">踩坑记录</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/11/MySQL%E5%AD%97%E7%AC%A6%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+  
     <article id="post-不花一分钱安装使用谷歌浏览器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -218,7 +327,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">日常有用经验分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常分享</a>
         		</li>
       		
 		</ul>
@@ -701,7 +810,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">日常有用经验分享</a>
+                <a href="javascript:void(0)" class="js-tag color5">踩坑记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常分享</a>
               </li>
             
             <div class="clearfix"></div>
