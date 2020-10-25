@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>不花一分钱安装使用谷歌浏览器 | Hexo</title>
+  <title>MySQL基础6（DQL：数据库的设计、备份和还原） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作者：浪子echo 发布类型：日常分享     很多人喜欢用谷歌浏览器，因为谷歌有很多供我们方便使用的插件，但是由于谷歌对中国已经禁用了，可很多小伙伴已经习惯了谷歌，所以今天给大分享一下怎么不花钱来使用谷歌（白嫖使我快乐哈哈哈）。 1.解压谷歌访问助手 v2.3.0破解版.zip（链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1i-VxRkmKPbKCFlF8wXkO2A提取码：o7pc">
+  <meta name="description" content="数据库的设计 多表之间的关系：  1.分类：  一对一：  *如： 人和身份证 *分析：一个人只有一个身份证，一个身份证只能对应一个人  一对多（多对一）：  *如：部门和员工 *分析：一个部门有多个员工，一个员工只能对应一个部门  多对多：  *如：学生和课程 *分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择 2.实现关系： 1.一对多（多对一）： *如：部门和员工 *实现方式：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不花一分钱安装使用谷歌浏览器">
-<meta property="og:url" content="http://example.com/2020/10/10/%E4%B8%8D%E8%8A%B1%E4%B8%80%E5%88%86%E9%92%B1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/index.html">
+<meta property="og:title" content="MySQL基础6（DQL：数据库的设计、备份和还原）">
+<meta property="og:url" content="http://example.com/2020/10/14/MySQL%E5%9F%BA%E7%A1%806%EF%BC%88DQL%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%87%E4%BB%BD%E5%92%8C%E8%BF%98%E5%8E%9F%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="作者：浪子echo 发布类型：日常分享     很多人喜欢用谷歌浏览器，因为谷歌有很多供我们方便使用的插件，但是由于谷歌对中国已经禁用了，可很多小伙伴已经习惯了谷歌，所以今天给大分享一下怎么不花钱来使用谷歌（白嫖使我快乐哈哈哈）。 1.解压谷歌访问助手 v2.3.0破解版.zip（链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1i-VxRkmKPbKCFlF8wXkO2A提取码：o7pc">
+<meta property="og:description" content="数据库的设计 多表之间的关系：  1.分类：  一对一：  *如： 人和身份证 *分析：一个人只有一个身份证，一个身份证只能对应一个人  一对多（多对一）：  *如：部门和员工 *分析：一个部门有多个员工，一个员工只能对应一个部门  多对多：  *如：学生和课程 *分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择 2.实现关系： 1.一对多（多对一）： *如：部门和员工 *实现方式：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-10T04:51:25.000Z">
-<meta property="article:modified_time" content="2020-10-18T04:44:52.473Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/CWB985/MyBlog/main/Images/%E5%9B%BE%E7%89%871.png">
+<meta property="article:published_time" content="2020-10-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-25T05:41:56.818Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="原创">
-<meta property="article:tag" content="日常分享">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CWB985/MyBlog/main/Images/%E5%9B%BE%E7%89%871.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -170,38 +172,112 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-不花一分钱安装使用谷歌浏览器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MySQL基础6（DQL：数据库的设计、备份和还原）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      不花一分钱安装使用谷歌浏览器
+      MySQL基础6（DQL：数据库的设计、备份和还原）
     </h1>
   
 
         
-        <a href="/2020/10/10/%E4%B8%8D%E8%8A%B1%E4%B8%80%E5%88%86%E9%92%B1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2020-10-10T04:51:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
+        <a href="/2020/10/14/MySQL%E5%9F%BA%E7%A1%806%EF%BC%88DQL%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%87%E4%BB%BD%E5%92%8C%E8%BF%98%E5%8E%9F%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-10-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>作者：浪子echo</p>
-<p>发布类型：日常分享</p>
-</blockquote>
-<p>   很多人喜欢用谷歌浏览器，因为谷歌有很多供我们方便使用的插件，但是由于谷歌对中国已经禁用了，可很多小伙伴已经习惯了谷歌，所以今天给大分享一下怎么不花钱来使用谷歌（白嫖使我快乐哈哈哈）。</p>
-<p>1.解压谷歌访问助手 v2.3.0破解版.zip（链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1i-VxRkmKPbKCFlF8wXkO2A">https://pan.baidu.com/s/1i-VxRkmKPbKCFlF8wXkO2A</a><br>提取码：o7pc ）</p>
-<p>2.打开已经下载的谷歌浏览器</p>
-<p>3.在地址栏打开 chrome://extensions</p>
-<p>4.再打开界面的右上角，打开开发者模式</p>
-<p>5.然后左上角出现“加载已解压的扩展程序”，点击，找到刚才解压出的“google-access-helper-2.3.0”文件夹，选择此文件夹，即可安装成功</p>
-<p>6.安装成功之后，重启谷歌浏览器就可以使用了!</p>
-<p> <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/CWB985/MyBlog/main/Images/%E8%B0%B7%E6%AD%8C.png">这是装成功之后的图片</a></p>
+        <h1 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h1><ol>
+<li>多表之间的关系：</li>
+</ol>
+<p>1.分类：</p>
+<ol>
+<li>一对一：</li>
+</ol>
+<p>*如： 人和身份证</p>
+<p>*分析：一个人只有一个身份证，一个身份证只能对应一个人</p>
+<ol start="2">
+<li>一对多（多对一）：</li>
+</ol>
+<p>*如：部门和员工</p>
+<p>*分析：一个部门有多个员工，一个员工只能对应一个部门</p>
+<ol start="3">
+<li>多对多：</li>
+</ol>
+<p>*如：学生和课程</p>
+<p>*分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择</p>
+<p>2.实现关系：</p>
+<p>1.一对多（多对一）：</p>
+<p>*如：部门和员工</p>
+<p>*实现方式：在多的一方建立外键，指向一的一方的主键</p>
+<p>2.多对多：</p>
+<p>*如：学生和课程</p>
+<p>*实现方式：多对多关系实现需要借助第三张中间表。中间表至少包含两设计个字段，这两个字段作为第三张表的外键，分别指向两张表的主键。</p>
+<p>3.一对一：</p>
+<p>*如：人和身份证</p>
+<p>*实现方式：一对一关系，可以在任意一方添加外键指向另一方的主键。</p>
+<p>3.案例：</p>
+<p>2.数据库设计的范式：</p>
+<p>*概念：设计数据库时，需要遵循的一些规范。要遵循后边的范式要求，先必须遵循前边所有的范式要求。</p>
+<p>设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同的范式，各种范式呈递次规范，越高的范式数据库冗余越小。</p>
+<p>目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）。</p>
+<p>*分类：</p>
+<ol>
+<li><p>第一范式（1NF）：每一列都是不可分割的原子数据项</p>
+</li>
+<li><p>第二范式（2NF）：在1NF的基础上，非码属性必须完全依赖于候选码（在1NF的基础上消除非主属性对主码的部分函数依赖）</p>
+</li>
+<li><p>第三范式（3NF）：在2NF的基础上，任何非主属性不依赖于其他非主属性（在2NF基础上消除传递依赖）。</p>
+</li>
+</ol>
+<p>*几个概念：</p>
+<ol>
+<li>函数依赖：A–&gt;B，如果通过A属性（属性组）的值，可以确定唯一B属性的值。则称B依赖于A。</li>
+</ol>
+<p>例如：学号–&gt;姓名。   （学号，课程名称）–&gt;分数</p>
+<ol start="2">
+<li>完全函数依赖：A–&gt;B,如果A是一个属性组，则B属性值的确定需要依赖于A属性组中所有的属性值。</li>
+</ol>
+<p>例如：（学号，课程名称）–&gt;分数</p>
+<ol start="3">
+<li>部分函数依赖：A–B,如果A是一个属性组，则B属性值的确定只需要依赖于A属性组中某一些值即可。</li>
+</ol>
+<p>例如：（学号，课程名称）–&gt;姓名</p>
+<ol start="4">
+<li>传递函数依赖：A–&gt;B,B–&gt;C,如果通过A属性（属性组）的值，可以确定唯一B属性（属性组）的值，再通过B属性（属性组）的值可以确定唯一C属性的值，则称C传递函数依赖于A</li>
+</ol>
+<p>例如：学号–&gt;系名，系名–&gt;系主任</p>
+<ol start="5">
+<li>码：如果在一张表中，一个属性或属性组，被其他所有属性完全依赖，则称这个属性（属性组）为该表的码。</li>
+</ol>
+<p>例如：该表中码为：（学号，课程名称）</p>
+<p><img src="https://raw.githubusercontent.com/CWB985/MyBlog/main/Images/%E5%9B%BE%E7%89%871.png" alt="img"> </p>
+<p>*主属性：码属性中的所有属性</p>
+<p>*非主属性：除过码属性组的属性</p>
+<h1 id="数据库的备份和还原："><a href="#数据库的备份和还原：" class="headerlink" title="数据库的备份和还原："></a>数据库的备份和还原：</h1><p>*语法：</p>
+<p> 备份：mysqldump  -u 用户名 -p密码 数据库名称 &gt;保存的路径    </p>
+<p> #注意 -p之后没有空格</p>
+<p>还原：</p>
+<ol>
+<li>登陆数据库:</li>
+</ol>
+<p>mysql  -u 用户名 -p密码 </p>
+<ol start="2">
+<li>创建数据库:</li>
+</ol>
+<p>create 数据库名；</p>
+<ol start="3">
+<li>使用数据库:</li>
+</ol>
+<p>use 数据库名;</p>
+<ol start="4">
+<li>执行文件。  source文件路径;</li>
+</ol>
 
       
 
@@ -254,7 +330,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -310,7 +386,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/10/%E4%B8%8D%E8%8A%B1%E4%B8%80%E5%88%86%E9%92%B1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/14/MySQL%E5%9F%BA%E7%A1%806%EF%BC%88DQL%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%87%E4%BB%BD%E5%92%8C%E8%BF%98%E5%8E%9F%EF%BC%89/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -324,18 +400,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/11/MySQL%E5%9F%BA%E7%A1%801%EF%BC%88mysql%E5%90%AF%E5%8A%A8%E7%99%BB%E5%BD%95%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/15/MySQL%E5%9F%BA%E7%A1%807%EF%BC%88DQL%E5%A4%9A%E8%A1%A8&%E4%BA%8B%E5%8A%A1%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MySQL基础1（mysql启动登录）
+          MySQL基础7（DQL:多表&amp;事务）
         
       </div>
     </a>
   
   
-    <a href="/2020/10/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2020/10/13/MySQL%E5%9F%BA%E7%A1%805%EF%BC%88DQL%EF%BC%9A%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E5%92%8C%E7%BA%A6%E6%9D%9F%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL基础5（DQL：查询语句和约束）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -366,8 +442,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://example.com/2020/10/10/%E4%B8%8D%E8%8A%B1%E4%B8%80%E5%88%86%E9%92%B1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/", 
-    sourceId: "不花一分钱安装使用谷歌浏览器",
+    url: "http://example.com/2020/10/14/MySQL%E5%9F%BA%E7%A1%806%EF%BC%88DQL%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E3%80%81%E5%A4%87%E4%BB%BD%E5%92%8C%E8%BF%98%E5%8E%9F%EF%BC%89/", 
+    sourceId: "MySQL基础6（DQL：数据库的设计、备份和还原）",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -376,7 +452,7 @@
   
 
   
-  <div id="SOHUCS" sid="不花一分钱安装使用谷歌浏览器" ></div> 
+  <div id="SOHUCS" sid="MySQL基础6（DQL：数据库的设计、备份和还原）" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
